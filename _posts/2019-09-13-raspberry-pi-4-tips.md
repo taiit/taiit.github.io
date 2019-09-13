@@ -37,9 +37,11 @@ Run command bluetoothctl tp control bluetooth devices.
 ```
 
 Useful commands
-
-- discoverable on
-- scan on
-- connect <device>
-- help
+```
+  discoverable on
+  scan on
+  connect <device>
+  help
+  quit
+```
 
