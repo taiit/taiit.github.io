@@ -78,6 +78,7 @@ List of useful content about C Language.
 
 # Calculate factorial number in single function
 ```C
+// Solution 1
 #include<stdio.h>
 #define N 10
 
@@ -96,5 +97,30 @@ int main(int num)
 	    return 0;
 	}
 }
+// Solution 2
+#include <stdio.h>
 
+int main(int n, char** argv)
+{
+    if (argv)
+        puts("Enter n"), scanf("%d", &n), printf("%d! = %d\n", n, main(n, 0));
+    else 
+        return n ? n * main(n - 1, 0) : 1;
+}
+
+// Solution 3.
+#include <stdio.h>                                                              
+                                                                                
+int main() {                                                                    
+    static int flag = 1;                                                        
+    static int ret = 0;                                                         
+    if(flag) {                                                                  
+        printf("Input\n");                                                      
+        scanf("%d", &ret);                                                      
+        flag = 0;                                                               
+        printf("%d\n", main());                                                 
+        return 0;                                                               
+    }                                                                           
+    return ret == 0 ? 1 : ret-- * main();                                       
+}
 ```
