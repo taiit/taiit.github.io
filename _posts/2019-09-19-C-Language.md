@@ -76,6 +76,20 @@ List of useful content about C Language.
     > Leads to undefined behavior, double-freeing a block of memory will corrupt the state of the memory manager, which might cause existing blocks of memory to get corrupted or for future allocations to fail.
 + Tools: Valgrind
 
+# LSM, MSB
+```
+BIT NUMBER    31                                     0
+               ▼                                     ▼
+number bits    0000 0000 0000 0000 0000 0000 0001 0101 
+               ▲    ^           ^                    ▲ 
+              MSB   |           |                   LSM
+                    |           | 
+                   n=27        m=17
+
+LSB - Least Significant Bit (numbered 0)
+MSB - Most  Significant Bit (numbered 31) 
+```
+
 # Calculate factorial number in single function
 ```C
 // Solution 1
