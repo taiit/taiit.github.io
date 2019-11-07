@@ -29,11 +29,21 @@ https://www.everythingcli.org/ssh-tunnelling-for-fun-and-profit-autossh/
 https://raymii.org/s/tutorials/Autossh_persistent_tunnels.html
 
 On local PC
-	Run simple http server
-		python3 -m http.server
+	
+  Run simple http server
+		
+    python3 -m http.server
+    
 	Start ssh remote tunnel
-		autossh -N -f -M 0 -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3"  -R 1234:localhost:8000 user@remote_server_ip
-		autossh -N -M 0 -R 1234:localhost:8000 user@remote_server_ip &
+		
+    autossh -N -f -M 0 -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3"  -R 1234:localhost:8000 user@remote_server_ip
+		
+    autossh -N -M 0 -R 1234:localhost:8000 user@remote_server_ip &
+    
+  crontab -e
+    @reboot /usr/bin/autossh -i /home/taihv/.ssh/google_compute_engine -f -N -T -R 80:localhost:8001 taihv@34.69.172.61
+  thingsboard: us-micro-pc 8080 -> raspberry 8001
+               uc-micro-pc 2220   -> raspberry 22
 
 On remote server 
 	Edit/etc/ssh/sshd_config
@@ -43,3 +53,5 @@ On remote server
 		netstat -tln
 
 * Now on connection to remote_server_ip port 1234 will be forward to your local PC port 8000
+http://34.69.172.61:8080/
+
