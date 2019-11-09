@@ -29,21 +29,26 @@ https://www.everythingcli.org/ssh-tunnelling-for-fun-and-profit-autossh/
 https://raymii.org/s/tutorials/Autossh_persistent_tunnels.html
 
 On local PC
-	
+
   Run simple http server
-		
-    python3 -m http.server
-    
-	Start ssh remote tunnel
+        
+        python3 -m http.server
+
+  Start ssh remote tunnel
 		
     autossh -N -f -M 0 -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3"  -R 1234:localhost:8000 user@remote_server_ip
 		
     autossh -N -M 0 -R 1234:localhost:8000 user@remote_server_ip &
     
   crontab -e
+    
     @reboot /usr/bin/autossh -i /home/taihv/.ssh/google_compute_engine -f -N -T -R 80:localhost:8001 taihv@34.69.172.61
-  thingsboard: us-micro-pc 8080 -> raspberry 8001
-               uc-micro-pc 2220   -> raspberry 22
+
+
+thingsboard server  us-micro-pc 8080   -> raspberry 8001
+ssh to raspberry    uc-micro-pc 2220   -> raspberry 22
+mqtt broker          us-micro-pc 1883   -> raspbeery 1883   allow-mqtt-broker    mqtt-broker-p1883-p1884
+mqtt broker          us-micro-pc 1884   -> raspbeery 1884   allow-mqtt-broker    mqtt-broker-p1883-p1884
 
 On remote server 
 	Edit/etc/ssh/sshd_config
