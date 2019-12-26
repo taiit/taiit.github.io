@@ -44,12 +44,12 @@ On local PC
     
     @reboot /usr/bin/autossh -i /home/taihv/.ssh/google_compute_engine -f -N -T -R 80:localhost:8001 taihv@34.69.172.61
 
-
-thingsboard server  us-micro-pc 8080   -> raspberry 8001
-ssh to raspberry    uc-micro-pc 2220   -> raspberry 22
-mqtt broker          us-micro-pc 1883   -> raspbeery 1883   allow-mqtt-broker    mqtt-broker-p1883-p1884
-mqtt broker          us-micro-pc 1884   -> raspbeery 1884   allow-mqtt-broker    mqtt-broker-p1883-p1884
-
+```
+ thingsboard server   us-micro-pc 8080   -> raspberry 8001
+ ssh to raspberry     uc-micro-pc 2220   -> raspberry 22
+ mqtt broker          us-micro-pc 1883   -> raspbeery 1883   allow-mqtt-broker    mqtt-broker-p1883-p1884
+ mqtt broker          us-micro-pc 1884   -> raspbeery 1884   allow-mqtt-broker    mqtt-broker-p1883-p1884
+```
 On remote server 
 	Edit/etc/ssh/sshd_config
 		#AllowTCPForwarding = yes
