@@ -1,5 +1,5 @@
 ---
-title: "The very first thing I do on new raspberry pi 4."
+title: "Setting OpenSSH server on WSL"
 categories:
   - Linux
 tags:
@@ -18,9 +18,7 @@ Setup ssh server on windows linux sub-sytem.
 2. Remove (optinal) and reinstall openssh server
 
 ```bash
-sudo apt remove openssh-server
-
-sudo apt install openssh-serv
+sudo apt install openssh-server
 
 ```
 
@@ -36,6 +34,11 @@ ListenAddress 0.0.0.0
 PasswordAuthentication yes
 AllowUsers <your_linux_user_name>
 PermitRootLogin no
+```
+3.1 Generate ssh key
+
+```bash
+ssh-keygen -t rsa -C "taihv@localhost"
 ```
 
 4. Restart ssh service
