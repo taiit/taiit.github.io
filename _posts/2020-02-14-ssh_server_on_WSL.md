@@ -38,6 +38,7 @@ PermitRootLogin no
 3.1 Generate ssh key
 
 ```bash
+ssh-keygen -A
 ssh-keygen -t rsa -C "taihv@localhost"
 ```
 
