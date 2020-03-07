@@ -339,7 +339,7 @@ header {
     text-align: center;
     color: #fff;
     background-attachment: scroll;
-    background-image: url('{{ site.baseurl }}/css/2016_style/img/header-bg.jpg');
+    background-image: url('{{ site.baseurl }}/css/img/header-bg.jpg');
     background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;
@@ -359,15 +359,19 @@ header .intro-text .intro-lead-in {
     font-size: 22px;
     font-style: italic;
     line-height: 22px;
+    vertical-align: bottom;
+    text-align: left;
 }
 
 header .intro-text .intro-heading {
     margin-bottom: 25px;
     text-transform: uppercase;
     font-family: {{ site.data.template.font.primary }};
+    text-align: left;
     font-size: 40px;
     font-weight: 700;
     line-height: 40px;
+    vertical-align: bottom;
 }
 
 @media(min-width:768px) {    
@@ -391,6 +395,8 @@ header .intro-text .intro-heading {
         font-size: 75px;
         font-weight: 700;
         line-height: 75px;
+        vertical-align: bottom;
+        text-align: left;
     }
 }
 
