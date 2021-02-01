@@ -51,12 +51,16 @@ On local PC
  mqtt broker          us-micro-pc 1884   -> raspbeery 1884   allow-mqtt-broker    mqtt-broker-p1883-p1884
 ```
 On remote server 
-	Edit/etc/ssh/sshd_config
-		#AllowTCPForwarding = yes
-		GatewayPorts  = yes
-	Check port status
-		netstat -tln
+
+Edit/etc/ssh/sshd_config (must reboot or restart sshd)
+
+#AllowTCPForwarding = yes
+
+GatewayPorts  = yes
+
+Check port status: netstat -tln
+
 
 * Now on connection to remote_server_ip port 1234 will be forward to your local PC port 8000
-http://34.69.172.61:8080/
+
 
