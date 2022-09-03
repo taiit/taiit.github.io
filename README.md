@@ -29,7 +29,10 @@ Then clone it to your local machine and run:
 
 ```
 $ bundle
+$ bundle exec jekyll s
 ```
+
+The server run at address: http://127.0.0.1:4000/
 
 ## Usage
 
