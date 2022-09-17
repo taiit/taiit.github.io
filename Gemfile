@@ -20,3 +20,11 @@ gem "wdm", "~> 0.1.1", :install_if => Gem.win_platform?
 
 # Jekyll <= 4.2.0 compatibility with Ruby 3.0
 gem "webrick", "~> 1.7"
+
+# https://github.com/jekyll/jekyll-compose
+# help: bundle exec jekyll help
+# Create new page: bundle exec jekyll page "My New Page"
+# Create new post: bundle exec jekyll post "My New Post"
+#  or specify a custom format for the date attribute in the yaml front matter
+#  bundle exec jekyll post "My New Post" --timestamp-format "%Y-%m-%d %H:%M:%S %z"
+gem 'jekyll-compose', group: [:jekyll_plugins]

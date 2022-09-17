@@ -9,21 +9,27 @@ pin: true
 ## Common application
 ```bash
 $ sudo apt-get update 
-$ sudo apt-get install vim gedit tmux tzdata apt-utils lsb-release software-properties-common openssh-client \
+$ sudo apt-get install vim gedit tmux powerline \
+    tzdata apt-utils lsb-release software-properties-common openssh-client \
     wget curl gzip git time meld net-tools openssh-server
+$ sudo apt install tightvncserver
 ```
 
 ## Build raspberry pi realtime kernel
 
 ```bash
-export ARCH=arm64
+
 export UNAME_R=5.15.0-1013-raspi
 export RT_PATCH
-export triple=aarch64-linux-gnu
 export KERNEL_VERSION=5.15.0
 export UBUNTU_VERSION=jammy
 export LTTNG_VERSION=2.13
 export KERNEL_DIR=linux-raspi
+
+export ARCH=arm64
+export triple=aarch64-linux-gnu
+
+
 
 sudo dpkg --add-architecture ${ARCH}
 
@@ -96,23 +102,46 @@ patch -p1 --forward < ~/work/rpi/patch-`cat ~/work/rpi/rt_patch.txt`.patch
 cd ~/work/rpi/${KERNEL_DIR}
 export $(dpkg-architecture -a${ARCH})
 export CROSS_COMPILE=${triple}-
-fakeroot debian/rules clean
-LANG=C fakeroot debian/rules printenv
+# no need to run fakeroot debian/rules clean
+# no need to run LANG=C fakeroot debian/rules printenv
 
 cp /home/taihv/work/rpi/usr/lib/linux/`cat ~/work/rpi/uname_r.txt`/config  .config 
 # make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig
 make menuconfig
 make LOCALVERSION=-raspi -j `nproc` bindeb-pkg
+make LOCALVERSION=-raspi -j20 bindeb-pkg
+
+scp *.deb taihv@192.168.79.27:~/work
+sudo dpkg -i linux-image-*.deb
+sudo apt update
+sudo apt upgrade
 
 
 COPY ./.config-fragment /home/user/linux_build/.
 
 # config RT kernel and merge config fragment
-cd ~/work/rpi/${KERNEL_DIR}
-    && cp /home/user/usr/lib/linux/`cat /home/user/uname_r`/config .config \
-    && ARCH=${ARCH} CROSS_COMPILE=${triple}- ./scripts/kconfig/merge_config.sh .config $HOME/linux_build/.config-fragment
+
+./scripts/kconfig/merge_config.sh .config ../.config-fragment
 
 cd ~/work/rpi/${KERNEL_DIR}
     && fakeroot debian/rules clean
 
 ```
+
+
+## Version 3
+
+
+# make bcm2711_defconfig
+``` bash
+./scripts/config --disable CONFIG_VIRTUALIZATION
+RUN ./scripts/config --enable CONFIG_PREEMPT_RT
+RUN ./scripts/config --disable CONFIG_RCU_EXPERT
+RUN ./scripts/config --enable CONFIG_RCU_BOOST
+RUN ./scripts/config --set-val CONFIG_RCU_BOOST_DELAY 500
+```
+CONFIG_HIGH_RES_TIMERS=y
+CONFIG_NO_HZ	=	y				 #	when	idle,	Eckles	to	save	energy	
+CONFIG_HZ	=	100 #	Eck	every	10	ms
+
+## Version 4
