@@ -1,7 +1,10 @@
 ---
 layout: post
+author: taiit
 title: Upgrade Cronos CNC Controller Board Firmware
 date: 2022-09-17 19:24 +0700
+categories: [Blogging, Tutorial]
+tags: [CNC]
 ---
 Quick Reading
 * TOC

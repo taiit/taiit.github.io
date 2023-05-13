@@ -145,3 +145,14 @@ CONFIG_NO_HZ	=	y				 #	when	idle,	Eckles	to	save	energy
 CONFIG_HZ	=	100 #	Eck	every	10	ms
 
 ## Version 4
+``` bash
+export ARCH=arm64
+export triple=aarch64-linux-gnu
+export $(dpkg-architecture -a${ARCH})
+export CROSS_COMPILE=${triple}-
+
+make menuconfig
+make LOCALVERSION=-raspi -j `nproc` bindeb-pkg
+make LOCALVERSION=-raspi -j20 bindeb-pkg
+
+```
