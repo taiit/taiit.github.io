@@ -14,6 +14,12 @@ $ sudo apt-get install vim gedit tmux powerline \
     wget curl gzip git time meld net-tools openssh-server
 $ sudo apt install tightvncserver
 ```
+## [New] Download ubuntu for raspberry PI4
+url: https://ubuntu.com/download/raspberry-pi
+After download, burn it to usb by using "Raspberry Pi Imager"
+
+Update config file.
+
 
 ## Build raspberry pi realtime kernel
 
@@ -130,8 +136,6 @@ cd ~/work/rpi/${KERNEL_DIR}
 
 
 ## Version 3
-
-
 # make bcm2711_defconfig
 ``` bash
 ./scripts/config --disable CONFIG_VIRTUALIZATION
