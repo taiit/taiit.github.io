@@ -40,3 +40,40 @@ sudo apt install rpi.gpio-common
 sudo adduser "${USER}" dialout
 sudo reboot
 
+############################################
+# [New] Install new raspberry pi
+## boot config.txt (todo: confirm it works)
+```bash
+hdmi_force_hotplug=1 
+hdmi_group=2	#hdmi_group=2 (DMT)
+hdmi_mode=81 # 81   1366x768  60Hz
+```
+## common software
+```bash
+sudo apt install net-tools vim tightvncserver raspi-config
+```
+
+## gui
+```bash
+sudo apt install xubuntu-desktop
+```
+## Update some config
+
+file: ~/.vnc/xstartup
+```
+# Start up the standard system desktop
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+/usr/bin/startxfce4
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+x-window-manager &
+
+# run vncserver: vncserver -geometry 1366x768
+# Ensure clipboard works
+# /usr/bin/autocutsel -s CLIPBOARD -fork
+```
+
+## realtime kernel update
+
+## linuxcnc
