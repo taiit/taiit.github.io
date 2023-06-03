@@ -77,3 +77,15 @@ x-window-manager &
 ## realtime kernel update
 
 ## linuxcnc
+
+
+# Tips
+Remove old kernels, as well as lingering software packages that are no longer required on your system. It is a good idea to occasionally run this command just to free up disk space
+```
+sudo apt autoremove --purge
+```
+To see a list of your Linux kernels on Ubuntu, execute the following dpkg command:
+```
+sudo dpkg --list | egrep 'linux-image|linux-headers'
+```
+
