@@ -77,7 +77,24 @@ x-window-manager &
 ## realtime kernel update
 
 ## linuxcnc
+```
+# Install dependecise
+sudo apt install dpkg-dev devscripts equivs
 
+cd linuxcnc/debian
+./configure uspace
+cd ..
+dpkg-checkbuilddeps
+mk-build-deps --install --root-cmd sudo --remove
+
+# Build
+cd src
+./autogen.sh
+./configure --with-realtime=uspace --enable-non-distributable=yes
+make -j3
+sudo make setuid
+source ../scripts/rip-environment
+```
 
 # Tips
 Remove old kernels, as well as lingering software packages that are no longer required on your system. It is a good idea to occasionally run this command just to free up disk space
