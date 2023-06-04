@@ -80,6 +80,7 @@ x-window-manager &
 ```
 # Install dependecise
 sudo apt install dpkg-dev devscripts equivs
+sudo apt install python3-opengl
 
 cd linuxcnc/debian
 ./configure uspace
