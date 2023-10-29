@@ -106,4 +106,6 @@ To see a list of your Linux kernels on Ubuntu, execute the following dpkg comman
 ```
 sudo dpkg --list | egrep 'linux-image|linux-headers'
 ```
-
+# Imporve 
+1. Increase swap file
+2. Overload cpu
